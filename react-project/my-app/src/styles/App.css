@@ -1,0 +1,29 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+button,
+input {
+	font-family: inherit;
+	font-size: inherit;
+}
+input:focus {
+	outline: none;
+}
+#root {
+	display: flex;
+	justify-content: center;
+	font-family: 'Montserrat', sans-serif;
+}
+.App {
+	width: 800px;
+}
+.post {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px;
+	border: 2px solid teal;
+	margin-top: 15px;
+}
