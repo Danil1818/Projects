@@ -1,3 +1,7 @@
 {
-	"scm.defaultViewMode": "tree"
+	"scm.defaultViewMode": "tree",
+	"editor.fontFamily": "JetBrains Mono, IBM Plex Mono, monospace",
+	"editor.tabSize": 2,
+	"editor.fontSize": 16,
+	"files.autoSave": "afterDelay"
 }

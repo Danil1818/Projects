@@ -145,3 +145,40 @@ a {
 	left: 0;
 	top: 0;
 }
+
+.text-item {
+	opacity: 0;
+	transform: translateY(50px);
+	transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.text-item.animation-class {
+	opacity: 1;
+	transform: translateY(0);
+	transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.services__item {
+	opacity: 0;
+	transform: translateX(-50px);
+	transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; 
+}
+.services__item:nth-child(3) {
+	transform: translateX(50px);
+}
+.services__item:nth-child(4) {
+	transform: translateX(50px);
+}
+.services__item.animation-class {
+	opacity: 1;
+	transform: translateX(0);
+	transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.services__item.animation-class:nth-child(2) {
+	transition-delay: 0.1s;
+}
+.services__item.animation-class:nth-child(3) {
+	transition-delay: 0.2s;
+}
+.services__item.animation-class:nth-child(4) {
+	transition-delay: 0.3s;
+}
