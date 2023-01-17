@@ -54,8 +54,6 @@ function App() {
 				<PostForm create={createPost} />
 			</MyModal>
 
-			{/* TimeCode 1:26 */}
-
 			<PostFilter filter={filter} setFilter={setFilter} />
 			<PostList
 				remove={removePost}
