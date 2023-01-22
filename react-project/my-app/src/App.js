@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import PostFilter from './components/PostFilter'
 import PostForm from './components/PostForm'
 import PostList from './components/PostList'
@@ -20,13 +21,21 @@ function App() {
 		setModal(false)
 	}
 
+	async function fetchPosts() {
+		const response = await axios.get(
+			'https://jsonplaceholder.typicode.com/posts'
+		)
+		setPosts(response.data)
+	}
+
 	// Получаем post из дочернего компонента
 	const removePost = post => {
 		setPosts(posts.filter(p => p.id !== post.id))
 	}
- 
+
 	return (
 		<div className='App'>
+			<button onClick={fetchPosts}>Get Posts</button>
 			<MyButton style={{ marginTop: 30 }} onClick={() => setModal(true)}>
 				Create user
 			</MyButton>
@@ -37,7 +46,7 @@ function App() {
 			<PostFilter filter={filter} setFilter={setFilter} />
 			<PostList
 				remove={removePost}
-				posts={sortedAndSearchPosts }
+				posts={sortedAndSearchPosts}
 				title='Posts'
 			/>
 		</div>
