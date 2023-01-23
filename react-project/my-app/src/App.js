@@ -9,6 +9,7 @@ import PostList from './components/PostList'
 import MyButton from './components/UI/button/MyButton'
 import MyModal from './components/UI/modal/MyModal'
 import MyLoader from './components/UI/loader/MyLoader'
+import { useFetching } from './hooks/useFetching'
 
 // rfce - reactFunctionalComponentExport
 
@@ -17,25 +18,18 @@ function App() {
 	const [filter, setFilter] = useState({ sort: '', query: '' })
 	const [modal, setModal] = useState(false)
 	const sortedAndSearchPosts = usePosts(posts, filter.sort, filter.query)
-	const [isPostLoading, setisPostLoading] = useState(false)
+	const [fetchPosts, isPostLoading, postError] = useFetching(async () => {
+		const posts = await PostService.getAll()
+		setPosts(posts)
+	})
 
 	useEffect(() => {
 		fetchPosts()
 	}, [])
-	
 
 	const createPost = newPost => {
 		setPosts([...posts, newPost])
 		setModal(false)
-	}
-
-	async function fetchPosts() {
-		setisPostLoading(true)
-		setTimeout( async () => {
-			const posts = await PostService.getAll()
-			setPosts(posts)
-			setisPostLoading(false)
-		}, 1000);
 	}
 
 	// Получаем post из дочернего компонента
@@ -53,8 +47,17 @@ function App() {
 			</MyModal>
 
 			<PostFilter filter={filter} setFilter={setFilter} />
+			{postError &&
+				<h1>Sorry is Error ${postError}</h1>
+			}
 			{isPostLoading ? (
-				<div style={{display: 'flex', justifyContent: 'center', marginTop: '50px'}}>
+				<div
+					style={{
+						display: 'flex',
+						justifyContent: 'center',
+						marginTop: '50px',
+					}}
+				>
 					<MyLoader />
 				</div>
 			) : (
